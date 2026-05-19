@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>API Transportista</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Inicio";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> API Transportista
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Inicio</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#que-hace-esta-api">¿Qué hace esta API?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#caracteristicas-principales">Características Principales</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#hacer-una-peticion">Hacer una petición</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#consulta-de-funciones">Consulta de funciones</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#estructura-del-repositorio">Estructura del Repositorio</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Arquitectura</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="arquitectura/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="arquitectura/capas/">Capas</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="arquitectura/flujo/">Flujo</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="autenticacion/">Autenticación</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="endpoints/">Endpoints</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="entidades/">Entidades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="configuracion/">Configuración</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="bd/">BD</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">API Transportista</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Inicio</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="api-transportista">API Transportista</h1>
+<p>Bienvenido a la documentación técnica de la <strong>API Transportista</strong>, una API REST construida con <strong>.NET 10</strong> que permite a empresas de transporte exponer sus datos de ciudades, rutas, buses, programaciones, asientos y reservas a sistemas cliente externos.</p>
+<hr />
+<h2 id="que-hace-esta-api">¿Qué hace esta API?</h2>
+<p>La API actúa como puente entre la base de datos de una empresa transportista y cualquier cliente externo. Cada empresa accede únicamente a sus propios datos gracias al sistema de autenticación por <strong>API Key</strong>.</p>
+<h2 id="caracteristicas-principales">Características Principales</h2>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Framework</strong></td>
+<td>ASP.NET Core (.NET 10)</td>
+</tr>
+<tr>
+<td><strong>Arquitectura</strong></td>
+<td>N-Tier (Capas)</td>
+</tr>
+<tr>
+<td><strong>Base de datos</strong></td>
+<td>SQL Server</td>
+</tr>
+<tr>
+<td><strong>Autenticación</strong></td>
+<td>API Key via Bearer Token</td>
+</tr>
+<tr>
+<td><strong>Formato</strong></td>
+<td>JSON</td>
+</tr>
+<tr>
+<td><strong>Tarea programada</strong></td>
+<td>Limpieza automática de bloqueos de asientos cada 10 minuto</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hacer-una-peticion">Hacer una petición</h3>
+<pre><code class="language-bash">curl -H &quot;Authorization: Bearer {token}&quot; https://localhost:5001/api/transportista/ciudades
+</code></pre>
+<hr />
+<h2 id="consulta-de-funciones">Consulta de funciones</h2>
+<p>La documentación principal muestra el funcionamiento de cada llamada de resultados y sus funciones asociadas. Visita la página de <strong>Endpoints</strong> para ver:</p>
+<ul>
+<li>rutas disponibles</li>
+<li>encabezado de autorización</li>
+<li>parámetros de consulta</li>
+<li>formato de respuesta</li>
+</ul>
+<hr />
+<h2 id="estructura-del-repositorio">Estructura del Repositorio</h2>
+<pre><code>Api_trasporte/
+├── API_TRANSPORTISTE/        # Capa de Presentación (Web API)
+├── CapaServicio/             # Capa de Lógica de Negocio
+├── CapaDatos/                # Capa de Acceso a Datos
+├── CapaEntidades/            # Modelos / Entidades
+└── BD/                       # Scripts SQL
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="arquitectura/overview/" class="btn btn-neutral float-right" title="Overview">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="arquitectura/overview/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.6.1
+Build Date UTC : 2026-05-19 23:21:01.356932+00:00
+-->

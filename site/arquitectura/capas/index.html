@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Capas - API Transportista</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Capas";
+        var mkdocs_page_input_path = "arquitectura\\capas.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> API Transportista
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Inicio</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Arquitectura</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Capas</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#capaentidades-modelos-compartidos">CapaEntidades — Modelos compartidos</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#proyecto-capaentidadescsproj">Proyecto: CapaEntidades.csproj</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#capadatos-acceso-a-datos">CapaDatos — Acceso a datos</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#proyecto-capadatoscsproj">Proyecto: CapaDatos.csproj</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#depende-de-capaentidades">Depende de: CapaEntidades</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#capaservicio-logica-de-negocio">CapaServicio — Lógica de negocio</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#proyecto-capaserviciocsproj">Proyecto: CapaServicio.csproj</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#depende-de-capaentidades-capadatos">Depende de: CapaEntidades, CapaDatos</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#api_transportista-capa-de-presentacion">API_TRANSPORTISTA — Capa de Presentación</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#proyecto-api_transportistecsproj">Proyecto: API_TRANSPORTISTE.csproj</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#depende-de-capaentidades-capaservicio">Depende de: CapaEntidades, CapaServicio</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#transportistacontroller">TransportistaController</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#apikeyauthenticationhandler">ApiKeyAuthenticationHandler</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#apikeyconfig">ApiKeyConfig</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#tareaprogramadaservice">TareaProgramadaService</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#convertidorprecioaletras">ConvertidorPrecioALetras</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../flujo/">Flujo</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../autenticacion/">Autenticación</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../endpoints/">Endpoints</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../entidades/">Entidades</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../configuracion/">Configuración</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../bd/">BD</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">API Transportista</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Arquitectura</li>
+      <li class="breadcrumb-item active">Capas</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="capas-del-proyecto">Capas del Proyecto</h1>
+<h2 id="capaentidades-modelos-compartidos">CapaEntidades — Modelos compartidos</h2>
+<h3 id="proyecto-capaentidadescsproj">Proyecto: <code>CapaEntidades.csproj</code></h3>
+<p>No tiene dependencias de otras capas del proyecto. Es referenciada por todas las demás.
+Contiene las clases que representan los datos del dominio:</p>
+<table>
+<thead>
+<tr>
+<th>Clase</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Transportista</strong></td>
+<td>Datos básicos de un transportista (nombre, cédula, teléfono, email)</td>
+</tr>
+<tr>
+<td><strong>Ciudades</strong></td>
+<td>Ciudad origen o destino</td>
+</tr>
+<tr>
+<td><strong>Rutas</strong></td>
+<td>Ruta entre dos ciudades</td>
+</tr>
+<tr>
+<td><strong>Buses</strong></td>
+<td>Vehículo asignado a una ruta</td>
+</tr>
+<tr>
+<td><strong>Programaciones</strong></td>
+<td>Viaje programado en una fecha y hora</td>
+</tr>
+<tr>
+<td><strong>DetalleProgramacion</strong></td>
+<td>Asiento específico dentro de una programación</td>
+</tr>
+<tr>
+<td><strong>TipoAsiento</strong></td>
+<td>Tipo de asiento (ej. 140°, 160°)</td>
+</tr>
+<tr>
+<td><strong>DetalleReserva</strong></td>
+<td>Datos completos para crear una reserva</td>
+</tr>
+<tr>
+<td><strong>PuntoIntemedio</strong></td>
+<td>Parada intermedia en una ruta</td>
+</tr>
+<tr>
+<td><strong>Asientos</strong></td>
+<td>Información de asientos de un bus</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="capadatos-acceso-a-datos">CapaDatos — Acceso a datos</h2>
+<h3 id="proyecto-capadatoscsproj">Proyecto: <code>CapaDatos.csproj</code></h3>
+<h3 id="depende-de-capaentidades">Depende de: <code>CapaEntidades</code></h3>
+<p>Implementa el acceso directo a SQL Server usando <code>System.Data.SqlClient</code>.
+Interfaz del Repositorio</p>
+<pre><code class="language-csharp">public interface ITransportistaRepository
+{
+    Task&lt;List&lt;Transportista&gt;&gt; ObtenerTodosAsync();
+    Task&lt;Transportista?&gt; ObtenerPorIdAsync(int id);
+    Task&lt;List&lt;Ciudades&gt;&gt; ObtenerCuidadesPor(int id);
+    Task&lt;List&lt;Rutas&gt;&gt; ObtenerRutasPor(int id);
+    Task&lt;List&lt;Buses&gt;&gt; ObtenerBusesPor(int id);
+    Task&lt;List&lt;Programaciones&gt;&gt; ObtenerProgramacionPor(int Id, DateTime Fecha, int IdOrigen, int IdDestino);
+    Task&lt;List&lt;TipoAsiento&gt;&gt; ObtenerTiposAsiento();
+    Task&lt;List&lt;DetalleProgramacion&gt;&gt; ObtenerAsientosPor(int id);
+    Task&lt;string&gt; BloquearAsientoPor(int idDetalleProgramacion);
+    Task&lt;bool&gt; LimpiarBloqueoAsientos();
+    Task&lt;bool&gt; LiberarAsientoPorToken(string token);
+    Task&lt;int&gt; CrearReserva(int TipoDocumento, string NroDocumento, string Pasajero, DateTime? FechaNacimiento,
+                         int Edad, string Sexo, string Ruc, string RazonSocial, string Direccion, int TipoDocVenta, 
+                         DateTime? FechaEmision, int IdAgenciaOrigen, int IdAgenciaDestino, string FormaDePago, 
+                         string MedioPago, string Tarjeta, DateTime? FechaVencimiento, double Adelanto, 
+                         string Observaciones, int IdUsuario, int Estado, int IdDocumento, int IdDetalleProgramacion, 
+                         string precio, string PrecioLetra, string PrecioReprog , string HoraSalida , string Menor , 
+                         int Embarque , string Telefono);
+}
+</code></pre>
+<p>Implementación
+<code>TransportistaRepository</code> implementa la interfaz abriendo conexiones a SQL Server, ejecutando procedimientos almacenados o consultas SQL parametrizadas, y mapeando los resultados a entidades.</p>
+<hr />
+<h2 id="capaservicio-logica-de-negocio">CapaServicio — Lógica de negocio</h2>
+<h3 id="proyecto-capaserviciocsproj">Proyecto: <code>CapaServicio.csproj</code></h3>
+<h3 id="depende-de-capaentidades-capadatos">Depende de: <code>CapaEntidades</code>, <code>CapaDatos</code></h3>
+<p>Actúa como intermediario entre el controlador y el repositorio. Aquí se concentran las validaciones de negocio y la orquestación de operaciones.
+Interfaz del Servicio</p>
+<pre><code class="language-csharp">public interface ITransportistaService
+{
+    Task&lt;List&lt;Transportista&gt;&gt; ObtenerTodos();
+    Task&lt;Transportista?&gt; ObtenerPorId(int id);
+    Task&lt;List&lt;Ciudades&gt;&gt; ObtenerCuidadesPor(int id);
+    Task&lt;List&lt;Rutas&gt;&gt; ObtenerRutasPor(int id);
+    Task&lt;List&lt;Buses&gt;&gt; ObtenerBusesPor(int id);
+    Task&lt;List&lt;Programaciones&gt;&gt; ObtenerProgramacionPor(int Id, DateTime Fecha, int IdOrigen, int IdDestino);
+    Task&lt;List&lt;TipoAsiento&gt;&gt; ObtenerTiposAsiento();
+    Task&lt;List&lt;DetalleProgramacion&gt;&gt; ObtenerAsientosPor(int id);
+    Task&lt;string&gt; BloquearAsientoPor(int idDetalleProgramacion);
+    Task&lt;bool&gt; LimpiarBloqueoAsientos();
+    Task&lt;bool&gt; LiberarAsientoPorToken(string token);
+    Task&lt;int&gt; CrearReserva(/* múltiples parámetros */);
+}
+</code></pre>
+<hr />
+<h2 id="api_transportista-capa-de-presentacion">API_TRANSPORTISTA — Capa de Presentación</h2>
+<h3 id="proyecto-api_transportistecsproj">Proyecto: <code>API_TRANSPORTISTE.csproj</code></h3>
+<h3 id="depende-de-capaentidades-capaservicio">Depende de: <code>CapaEntidades</code>, <code>CapaServicio</code></h3>
+<p>Expone los endpoints HTTP y gestiona la autenticación. Contiene:</p>
+<h6 id="transportistacontroller"><code>TransportistaController</code></h6>
+<p>Controlador principal decorado con <code>[ApiController]</code>, <code>[Route("api/[controller]")]</code> y <code>[Authorize]</code>. Todos los endpoints requieren un Bearer Token válido.
+Extrae el <code>IdEmpresa</code> del token para filtrar los datos devueltos por empresa.</p>
+<h6 id="apikeyauthenticationhandler"><code>ApiKeyAuthenticationHandler</code></h6>
+<p>Handler personalizado de ASP.NET Core que intercepta cada petición y valida el Bearer Token contra el diccionario de <code>ApiKeyConfig</code>. Si el token es válido, inyecta el <code>idEmpresa</code> como claim en el contexto de usuario.</p>
+<h6 id="apikeyconfig"><code>ApiKeyConfig</code></h6>
+<p>Clase estática que contiene el diccionario <code>Token → IdEmpresa</code>. En producción este diccionario debería migrarse a base de datos o a un gestor de secretos.</p>
+<h6 id="tareaprogramadaservice"><code>TareaProgramadaService</code></h6>
+<p><code>BackgroundService</code> que se ejecuta en segundo plano. Cada 60 segundos invoca <code>LimpiarBloqueoAsientos()</code> para liberar asientos que quedaron bloqueados sin completar una reserva.</p>
+<h6 id="convertidorprecioaletras"><code>ConvertidorPrecioALetras</code></h6>
+<p>Utilidad que convierte un precio numérico a su representación en letras (ej. <code>15.50</code> → <code>"QUINCE CON 50/100 SOLES"</code>), necesario para la emisión de comprobantes.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../overview/" class="btn btn-neutral float-left" title="Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../flujo/" class="btn btn-neutral float-right" title="Flujo">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../overview/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../flujo/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

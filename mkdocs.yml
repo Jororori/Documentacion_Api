@@ -1,0 +1,19 @@
+site_name: API Transportista
+
+nav:
+  - Inicio: index.md
+  - Arquitectura:
+      - Overview: arquitectura/overview.md
+      - Capas: arquitectura/capas.md
+      - Flujo: arquitectura/flujo.md
+  - Autenticación: autenticacion/index.md
+  - Endpoints: endpoints/index.md
+  - Entidades: entidades/index.md
+  - Configuración: configuracion/index.md
+  - BD: bd/index.md
+
+theme:
+  name: readthedocs
+
+extra_css:
+  - css/extra.css
