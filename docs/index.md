@@ -23,8 +23,19 @@ La API actúa como puente entre la base de datos de una empresa transportista y 
 ### Hacer una petición
 
 ```bash
-"https://localhost:5001/api/transportista/ciudades"
+curl -H "Authorization: Bearer {token}" https://localhost:5001/api/transportista/ciudades
 ```
+
+---
+
+## Consulta de funciones
+
+La documentación principal muestra el funcionamiento de cada llamada de resultados y sus funciones asociadas. Visita la página de **Endpoints** para ver:
+
+- rutas disponibles
+- encabezado de autorización
+- parámetros de consulta
+- formato de respuesta
 
 ---
 
