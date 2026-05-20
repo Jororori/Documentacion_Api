@@ -200,7 +200,7 @@ const API_DATA = [
         title: "Tipo de asiento",
         description: "Muestra el tipo de asiento de un bus específico, como 140°, 160°.",
         authorizations: [
-            { name: "Authorization", type: "int", location: "header", required: true, description: "Token Bearer de autenticación." }
+            { name: "Authorization", type: "string", location: "header", required: true, description: "Token Bearer de autenticación." }
         ],
         queryParams: [],
         bodyParams: null,
@@ -241,7 +241,7 @@ const API_DATA = [
             { name: "Authorization", type: "string", location: "header", required: true, description: "Token Bearer de autenticación." }
         ],
         pathParams: [
-            { name: "placa", type: "string", required: true, description: "Placa del vehículo a consultar.", example: "CARS-12345" }
+            { name: "placa", type: "int", required: true, description: "Placa del vehículo a consultar.", example: "CARS-12345" }
         ],
         queryParams: [],
         bodyParams: null,
