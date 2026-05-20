@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Documentación - API Transporte</title>
+    <!-- Google Fonts: Inter para la interfaz, Fira Code para el código -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- BARRA LATERAL (SIDEBAR) -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="3" width="15" height="13" rx="2" ry="2"></rect>
+                        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                        <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                        <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                    </svg>
+                    <span class="logo-text">API Transporte</span>
+                </div>
+                <span class="version-badge">v1.2.0</span>
+            </div>
+
+            <!-- Búsqueda rápida -->
+            <div class="search-container">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="search-input" placeholder="Buscar endpoint..." autocomplete="off">
+            </div>
+
+            <!-- Menú de Endpoints -->
+            <nav class="sidebar-nav" id="sidebar-menu">
+                <!-- Generado dinámicamente por JS -->
+            </nav>
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL (PARTE CENTRAL) -->
+        <main class="main-content" id="endpoint-details">
+            <!-- Generado dinámicamente por JS -->
+            <div class="loading-state">
+                <div class="spinner"></div>
+                <p>Cargando documentación...</p>
+            </div>
+        </main>
+
+        <!-- PANEL DE CÓDIGO Y RESPUESTA (DERECHO) -->
+        <section class="code-panel">
+            <!-- BLOQUE cURL -->
+            <div class="code-card">
+                <div class="code-card-header">
+                    <span class="card-title">cURL</span>
+                    <div class="card-actions">
+                        <button class="copy-btn" id="copy-curl-btn" title="Copiar cURL">
+                            <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            <span class="btn-text">Copiar</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="code-block-wrapper">
+                    <pre><code id="curl-display" class="language-bash">curl --request GET \
+  --url https://api.transportista.pe/v1/dni/info/{dni} \
+  --header 'Authorization: Bearer <token>'</code></pre>
+                </div>
+            </div>
+
+            <!-- VISOR DE RESPUESTAS -->
+            <div class="code-card response-card">
+                <div class="code-card-header">
+                    <div class="response-tabs" id="response-tabs-container">
+                        <!-- Pestañas generadas por JS (e.g., 200, 400, 401) -->
+                    </div>
+                    <div class="card-actions">
+                        <button class="copy-btn" id="copy-response-btn" title="Copiar Respuesta">
+                            <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            <span class="btn-text">Copiar</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="code-block-wrapper response-block">
+                    <div class="response-status-bar" id="response-status-info">
+                        Status: <span class="status-indicator status-2xx">200 OK</span>
+                    </div>
+                    <pre><code id="response-display" class="language-json">{}</code></pre>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- MODAL O PANEL DE EJECUCIÓN (TRY IT) -->
+    <div id="tryit-overlay" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Consola Interactiva: Probar API</h3>
+                <button class="close-modal-btn" id="close-modal-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-split">
+                    <div class="modal-form-panel">
+                        <h4>Parámetros de la Petición</h4>
+                        <form id="tryit-form">
+                            <!-- Campos de entrada generados dinámicamente -->
+                        </form>
+                    </div>
+                    <div class="modal-result-panel">
+                        <h4>Resultado de la Simulación</h4>
+                        <div class="simulation-actions">
+                            <button type="button" class="btn-primary" id="run-simulation-btn">Enviar Petición</button>
+                        </div>
+                        <div class="simulation-response-wrapper">
+                            <div class="simulation-loader" id="simulation-loader">
+                                <div class="spinner"></div>
+                                <p>Enviando petición a la API...</p>
+                            </div>
+                            <pre><code id="simulation-response-display" class="language-json">Pulse "Enviar Petición" para ver la respuesta interactiva.</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
