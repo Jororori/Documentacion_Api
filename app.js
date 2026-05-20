@@ -3,38 +3,45 @@ const API_DATA = [
     {
         id: "auth-token",
         category: "Autenticación",
-        method: "POST",
-        path: "/v1/auth/token",
-        title: "Obtener Token",
-        description: "Permite autenticar una aplicación cliente y obtener un token Bearer para consumir los demás endpoints de la API.",
-        authorizations: [],
-        pathParams: [],
+        method: "GET",
+        path: "/v1/auth/transportista/ciudades",
+        title: "Lista De ciudades",
+        description: "Permite Listar Las ciudades(Establecimientos) creados en la Empresa",
+        authorizations: [
+            { name: "Authorization", type: "string", location: "header", required: true, description: "Token Bearer de autenticación. Ejemplo: Bearer <token>" }
+        ],
+        pathParams: [
+            { description: "Este EndPoint no requiere mas parametros" }
+        ],
         queryParams: [],
-        bodyParams: {
-            contentType: "application/json",
-            schema: [
-                { name: "client_id", type: "string", required: true, description: "Identificador del cliente de API proporcionado en el portal de desarrolladores." },
-                { name: "client_secret", type: "string", required: true, description: "Clave secreta del cliente de API." }
-            ],
-            example: {
-                client_id: "usr_trans_prod_823",
-                client_secret: "sec_983f8b37e8912eabf43a0d92e8a1"
-            }
-        },
+        bodyParams: null,
         responses: {
             "200": {
                 status: "200 OK",
-                description: "Token generado con éxito.",
+                description: "Ciudades Listadas Con Exito",
                 data: {
                     status: 200,
                     success: true,
-                    message: "Autenticación exitosa",
-                    data: {
-                        token_type: "Bearer",
-                        access_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfdHJhbnNfcHJvZF84MjMiLCJleHAiOjE3Nzk5ODQwMDB9.a82f80be",
-                        expires_in: 86400,
-                        scope: "read write transport"
-                    }
+                    data: [
+                        {
+                            "idCiudad": 1,
+                            "nombreCiudad": "Principal",
+                            "codigo": "0000",
+                            "idUbigeo": 1138
+                        },
+                        {
+                            "idCiudad": 2090,
+                            "nombreCiudad": "TRUJILLO",
+                            "codigo": "0001",
+                            "idUbigeo": 1128
+                        },
+                        {
+                            "idCiudad": 2093,
+                            "nombreCiudad": "CASMA",
+                            "codigo": "0005",
+                            "idUbigeo": 811
+                        }
+                    ]
                 }
             },
             "401": {
@@ -43,10 +50,29 @@ const API_DATA = [
                 data: {
                     status: 401,
                     success: false,
-                    message: "Credenciales de API inválidas (client_id o client_secret erróneos).",
+                    message: "Credenciales de API inválidas.",
                     error_code: "AUTH_CREDENTIALS_INVALID"
                 }
+            },
+            "500" : {
+                status : "500 internal server",
+                description : "fallas internas en el BackEnd" ,
+                data :{
+                    success : false , 
+                    error : "Error al obtener ciudades: el id debe ser mayor a 0" 
+                    
+                }
+            },
+            "501" : {
+                status : "500 internal server",
+                description : "fallas internas en la Base de Datos (500)" ,
+                data :{
+                    success : false , 
+                    error : "Error en servicio al obtener ciudades : id = {id}: Could not find stored procedure 'SP_ListarEstablecimientos2'." 
+                    
+                }
             }
+
         }
     },
     {
@@ -850,7 +876,7 @@ function renderEndpointDetails(ep) {
         <div class="path-container ${ep.method.toLowerCase()}">
             <span class="path-method ${ep.method.toLowerCase()}">${ep.method}</span>
             <span class="path-url" id="live-path-display">${renderLivePathHTML(ep.path, ep.pathParams)}</span>
-            <button class="btn-tryit" id="open-tryit-btn">
+            <button class="btn-tryit" id="open-tryit-btn" style="display:none;"> 
                 <span>Try it</span>
                 <svg viewBox="0 0 24 24">
                     <polygon points="5 3 19 12 5 21 5 3"></polygon>
@@ -872,6 +898,7 @@ function renderEndpointDetails(ep) {
             updateLivePathDisplay();
         });
     });
+
 
     // Listener para abrir el modal interactivo
     document.getElementById("open-tryit-btn").addEventListener("click", () => {
