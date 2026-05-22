@@ -79,42 +79,79 @@ const API_DATA = [
         id: "consultar-rutas",
         category: "Consultar rutas",
         method: "GET",
-        path: "/api/transportista/TipoAsiento",
+        path: "/v1/auth/transportista/rutas",
         title: "Consultar rutas",
-        description: "Consulta los datos de una ruta específica.",
+        description: "Consulta las rutas creadas en el sistema. (parametros ... los ids generados son en base nuestra bd , ahora la duracion siempre retornara null, ya que en nuenstro sistema no manejamos ese campo solo se agrego de manera referencial para cumplir con sus requerimientos)",
         authorizations: [
             { name: "Authorization", type: "string", location: "header", required: true, description: "Token Bearer de autenticación. Ejemplo: Bearer <token>" }
         ],
         pathParams: [
-            { name: "rutas", type: "int", required: true, description: "Número de id de la ruta", example: "11" }
+            { description: "Este EndPoint no requiere mas parametros" }
         ],
         queryParams: [],
         bodyParams: null,
         responses: {
             "200": {
                 status: "200 OK",
-                description: "Datos de la ruta obtenidos con éxito.",
+                description: "Rutas Obetnidas con exito",
                 data: {
                     status: 200,
                     success: true,
-                    message: "Exito",
-                    data:  {
-                        "idRuta": 11,
-                        "origen": "Principal",
-                        "destino": "LIMA CENTRO",
-                        "distancia": 10,
-                        "duracion": null
-                    }
+                    data:[
+                        
+                        {
+                            "idRuta": 11,
+                            "origen": "Principal",
+                            "destino": "LIMA CENTRO",
+                            "distancia": 10,
+                            "duracion": null
+                        },
+                        {
+                            "idRuta": 32,
+                            "origen": "Principal",
+                            "destino": "Chiclayo",
+                            "distancia": 800,
+                            "duracion": null
+                        },
+                            {
+                            "idRuta": 56,
+                            "origen": "Principal",
+                            "destino": "PRUEBA",
+                            "distancia": 1000,
+                            "duracion": null
+                        }
+
+                        
+                    ]
+                }
+            },
+              "401": {
+                status: "401 Unauthorized",
+                description: "Las credenciales provistas son inválidas.",
+                data: {
+                    status: 401,
+                    success: false,
+                    message: "Credenciales de API inválidas.",
+                    error_code: "AUTH_CREDENTIALS_INVALID"
                 }
             },
             "500": {
-                status: "500 Bad Request",
+                status: "500 internal server ",
                 description: "Formato de rutas inválido.",
                 data: {
                     status: 500,
                     success: false,
-                    message: "Error en servicio al obtener rutas del transportista: El id debe ser mayor a 0.",
+                    message: "Error en servicio al obtener rutas : El id debe ser mayor a 0.",
                     error_code: "rutas_FORMAT_INVALID"
+                }
+            },
+            "501" : {
+                status : "500 internal server BD",
+                description : "fallas internas en la Base de Datos (500)" ,
+                data :{
+                    success : false , 
+                    error : "Error en servicio al obtener rutas : id = {id}: Could not find stored procedure 'SP_ListarRutas'." 
+                    
                 }
             }
         }
@@ -123,71 +160,136 @@ const API_DATA = [
         id: "consultar-buses",
         category: "Consultar información de buses",
         method: "GET",
-        path: "/v1/buses/{buses}",
+        path: "/v1/auth/transportista/buses",
         title: "Consultar información de Buses",
-        description: "Consulta los datos de un bus específico, incluyendo modelo, placa, tipo, capacidad y detalles de asientos.",
+        description: "Consulta los datos de los Buses de la empresa, Incluye Mapa de Asientos (todos los id traidos son en base a nuestra bd, el parametro {tipo} siempre sera 0 porque es un dato que no se maneja en el sistema y se agrago por defecto para cumplir con sus requerimientos)",
         authorizations: [
             { name: "Authorization", type: "string", location: "header", required: true, description: "Token Bearer de autenticación." }
         ],
         pathParams: [
-            { name: "buses", type: "int", required: true, description: "Número de id del bus a consultar.", example: "26" }
+            {description: "Este EndPoint no recquiere parametros" }
         ],
         queryParams: [],
         bodyParams: null,
         responses: {
-            "200": {
+           "200": {
                 status: "200 OK",
-                description: "Datos del bus obtenidos con éxito.",
+                description: "Buses Obetnidos con exito",
                 data: {
                     status: 200,
                     success: true,
-                    message: "Exito",
-                    data: {
-                        "idBus": 26,
-                        "modelo": "ADGNSDF",
-                        "placa": "HJJKHKJHK",
-                        "tipo": 0,
-                        "capacidad": 4,
-                        "asiento": [
-                            {
-                                "idAsiento": 731,
-                                "numero": "1",
-                                "numeroFila": 0,
-                                "numeroColumna": 3,
-                                "numeroPiso": 1
-                            },
-                            {
-                                "idAsiento": 732,
-                                "numero": "2",
-                                "numeroFila": 1,
-                                "numeroColumna": 3,
-                                "numeroPiso": 1
-                            },
-                            {
-                                "idAsiento": 733,
-                                "numero": "3",
-                                "numeroFila": 1,
-                                "numeroColumna": 4,
-                                "numeroPiso": 1
-                            },
-                            {
-                                "idAsiento": 734,
-                                "numero": "4",
-                                "numeroFila": 1,
-                                "numeroColumna": 1,
-                                "numeroPiso": 1
-                            }
-                        ]
-                    }
+                    data:[
+                        {
+                            "idBus": 8,
+                            "modelo": "Bus Urbano ",
+                            "Placa": "TTTTT",
+                            "tipo": 0,
+                            "Capacidad": 10,
+                            "asiento" : [
+                                {
+                                    "idAsiento": 562,
+                                    "numero": "1",
+                                    "numeroFila": 0,
+                                    "numeroColumna": 0,
+                                    "numeroPiso": 1
+                                },
+                                {
+                                    "idAsiento": 25201,
+                                    "numero": "7",
+                                    "numeroFila": 1,
+                                    "numeroColumna": 1,
+                                    "numeroPiso": 2
+                                },
+                                {
+                                    "idAsiento": 25202,
+                                    "numero": "8",
+                                    "numeroFila": 1,
+                                    "numeroColumna": 3,
+                                    "numeroPiso": 2
+                                },
+                                {
+                                    "idAsiento": 25203,
+                                    "numero": "9",
+                                    "numeroFila": 1,
+                                    "numeroColumna": 4,
+                                    "numeroPiso": 2
+                                },
+                                {
+                                    "idAsiento": 25204,
+                                    "numero": "10",
+                                    "numeroFila": 2,
+                                    "numeroColumna": 0,
+                                    "numeroPiso": 2
+                                }
+                            ]
+                        },
+                        {
+                            "idBus": 26,
+                            "modelo": "Autocar",
+                            "placa": "Y001-32",
+                            "tipo": 0,
+                            "capacidad": 4,
+                            "asiento": [
+                                {
+                                    "idAsiento": 731,
+                                    "numero": "1",
+                                    "numeroFila": 0,
+                                    "numeroColumna": 3,
+                                    "numeroPiso": 1
+                                },
+                                {
+                                    "idAsiento": 732,
+                                    "numero": "2",
+                                    "numeroFila": 1,
+                                    "numeroColumna": 3,
+                                    "numeroPiso": 1
+                                },
+                                {
+                                    "idAsiento": 733,
+                                    "numero": "3",
+                                    "numeroFila": 1,
+                                    "numeroColumna": 4,
+                                    "numeroPiso": 1
+                                },
+                                {
+                                    "idAsiento": 734,
+                                    "numero": "4",
+                                    "numeroFila": 1,
+                                    "numeroColumna": 1,
+                                    "numeroPiso": 1
+                                }
+                            ] 
+                        }  
+                    ]
+                }
+            },
+              "401": {
+                status: "401 Unauthorized",
+                description: "Las credenciales provistas son inválidas.",
+                data: {
+                    status: 401,
+                    success: false,
+                    message: "Credenciales de API inválidas.",
+                    error_code: "AUTH_CREDENTIALS_INVALID"
                 }
             },
             "500": {
-                status: "500 Internal Server Error",
-                description: "Error interno del servidor.",
+                status: "500 internal server ",
+                description: "Formato de rutas inválido.",
                 data: {
                     status: 500,
                     success: false,
-                    message: "Error en servicio al obtener buses del transportista: El id debe ser mayor a 0",
+                    message: "Error en servicio al obtener buses : El id debe ser mayor a 0.",
+                    error_code: "rutas_FORMAT_INVALID"
+                }
+            },
+            "501" : {
+                status : "500 internal server BD",
+                description : "fallas internas en la Base de Datos (500)" ,
+                data :{
+                    success : false , 
+                    error : "Error en servicio al obtener buses : id = {id}: Could not find stored procedure 'SP_ListarBuses'." 
+                    
                 }
             }
         }
@@ -196,9 +298,9 @@ const API_DATA = [
         id: "consultar-Tipo-Asiento",
         category: "Tipo de asiento",
         method: "GET",
-        path: "/v1/vehiculos/TipoAsiento/{Tipo-Asiento}",
+        path: "/v1/auth/transportista/TipoAsiento",
         title: "Tipo de asiento",
-        description: "Muestra el tipo de asiento de un bus específico, como 140°, 160°.",
+        description: "Muestra dos Tipos de asiento por defecto (140 , 160). Cabe recalcar que nuestro sistema no maneja los tipos de asiento, por eso es por defecto",
         authorizations: [
             { name: "Authorization", type: "string", location: "header", required: true, description: "Token Bearer de autenticación." }
         ],
@@ -211,19 +313,18 @@ const API_DATA = [
                 data: {
                     status: 200,
                     success: true,
-                    message: "Exito",
                     data: [
                         {                        
-                        "idTipoAsiento": 1,
-                        "tiposAsiento": "140",
-                        "precio": 0.00
-                    },
-                    {
-                        "idTipoAsiento": 2,
-                        "tiposAsiento": "160",
-                        "precio": 0.00
-        
-                    }
+                            "idTipoAsiento": 1,
+                            "tiposAsiento": "140",
+                            "precio": 0.00
+                        },
+                        {
+                            "idTipoAsiento": 2,
+                            "tiposAsiento": "160",
+                            "precio": 0.00
+            
+                        }
                     ]              
                   }
             },
@@ -234,7 +335,7 @@ const API_DATA = [
         id: "consultar-programaciones",
         category: "Programaciones",
         method: "GET",
-        path: "/v1/vehiculos/placa/{placa}/programaciones",
+        path: "/v1/auth/transportista/programaciones?{}",
         title: "Programaciones",
         description: "Obtiene las programaciones solicitadas",
         authorizations: [
@@ -983,7 +1084,7 @@ function updateCurlSnippet() {
     }
 
     // Generar string final cURL
-    const baseUrl = "https://api.transportista.pe";
+    const baseUrl = "https://factura-2.pe/ApiTransporte";
     let curlStr = `curl --request ${ep.method} \\\n  --url ${baseUrl}${urlPath}${queryParamsStr} \\\n  --header 'Authorization: ${authHeaderValue}'`;
     
     if (ep.bodyParams) {
