@@ -86,79 +86,42 @@ const API_DATA = [
             { name: "Authorization", type: "string", location: "header", required: true, description: "Token Bearer de autenticación. Ejemplo: Bearer <token>" }
         ],
         pathParams: [
-            { description: "Este EndPoint no requiere mas parametros" }
+            { name: "rutas", type: "int", required: true, description: "Número de id de la ruta", example: "11" }
         ],
         queryParams: [],
         bodyParams: null,
         responses: {
             "200": {
                 status: "200 OK",
-                description: "Rutas Obetnidas con exito",
+                description: "Datos de la ruta obtenidos con éxito.",
                 data: {
                     status: 200,
                     success: true,
-                    data:[
-                        
-                        {
-                            "idRuta": 11,
-                            "origen": "Principal",
-                            "destino": "LIMA CENTRO",
-                            "distancia": 10,
-                            "duracion": null
-                        },
-                        {
-                            "idRuta": 32,
-                            "origen": "Principal",
-                            "destino": "Chiclayo",
-                            "distancia": 800,
-                            "duracion": null
-                        },
-                            {
-                            "idRuta": 56,
-                            "origen": "Principal",
-                            "destino": "PRUEBA",
-                            "distancia": 1000,
-                            "duracion": null
-                        }
-
-                        
-                    ]
-                }
-            },
-              "401": {
-                status: "401 Unauthorized",
-                description: "Las credenciales provistas son inválidas.",
-                data: {
-                    status: 401,
-                    success: false,
-                    message: "Credenciales de API inválidas.",
-                    error_code: "AUTH_CREDENTIALS_INVALID"
+                    message: "Exito",
+                    data:  {
+                        "idRuta": 11,
+                        "origen": "Principal",
+                        "destino": "LIMA CENTRO",
+                        "distancia": 10,
+                        "duracion": null
+                    }
                 }
             },
             "500": {
-                status: "500 internal server ",
+                status: "500 Bad Request",
                 description: "Formato de rutas inválido.",
                 data: {
                     status: 500,
                     success: false,
-                    message: "Error en servicio al obtener rutas : El id debe ser mayor a 0.",
+                    message: "Error en servicio al obtener rutas del transportista: El id debe ser mayor a 0.",
                     error_code: "rutas_FORMAT_INVALID"
-                }
-            },
-            "501" : {
-                status : "500 internal server BD",
-                description : "fallas internas en la Base de Datos (500)" ,
-                data :{
-                    success : false , 
-                    error : "Error en servicio al obtener rutas : id = {id}: Could not find stored procedure 'SP_ListarRutas'." 
-                    
                 }
             }
         }
     },
     {
         id: "consultar-buses",
-        category: "Consultar información de buses",
+        category: "Buses",
         method: "GET",
         path: "/v1/auth/transportista/buses",
         title: "Consultar información de Buses",
@@ -167,129 +130,64 @@ const API_DATA = [
             { name: "Authorization", type: "string", location: "header", required: true, description: "Token Bearer de autenticación." }
         ],
         pathParams: [
-            {description: "Este EndPoint no recquiere parametros" }
+            { name: "buses", type: "int", required: true, description: "Número de id del bus a consultar.", example: "26" }
         ],
         queryParams: [],
         bodyParams: null,
         responses: {
-           "200": {
+            "200": {
                 status: "200 OK",
-                description: "Buses Obetnidos con exito",
+                description: "Datos del bus obtenidos con éxito.",
                 data: {
                     status: 200,
                     success: true,
-                    data:[
-                        {
-                            "idBus": 8,
-                            "modelo": "Bus Urbano ",
-                            "Placa": "TTTTT",
-                            "tipo": 0,
-                            "Capacidad": 10,
-                            "asiento" : [
-                                {
-                                    "idAsiento": 562,
-                                    "numero": "1",
-                                    "numeroFila": 0,
-                                    "numeroColumna": 0,
-                                    "numeroPiso": 1
-                                },
-                                {
-                                    "idAsiento": 25201,
-                                    "numero": "7",
-                                    "numeroFila": 1,
-                                    "numeroColumna": 1,
-                                    "numeroPiso": 2
-                                },
-                                {
-                                    "idAsiento": 25202,
-                                    "numero": "8",
-                                    "numeroFila": 1,
-                                    "numeroColumna": 3,
-                                    "numeroPiso": 2
-                                },
-                                {
-                                    "idAsiento": 25203,
-                                    "numero": "9",
-                                    "numeroFila": 1,
-                                    "numeroColumna": 4,
-                                    "numeroPiso": 2
-                                },
-                                {
-                                    "idAsiento": 25204,
-                                    "numero": "10",
-                                    "numeroFila": 2,
-                                    "numeroColumna": 0,
-                                    "numeroPiso": 2
-                                }
-                            ]
-                        },
-                        {
-                            "idBus": 26,
-                            "modelo": "Autocar",
-                            "placa": "Y001-32",
-                            "tipo": 0,
-                            "capacidad": 4,
-                            "asiento": [
-                                {
-                                    "idAsiento": 731,
-                                    "numero": "1",
-                                    "numeroFila": 0,
-                                    "numeroColumna": 3,
-                                    "numeroPiso": 1
-                                },
-                                {
-                                    "idAsiento": 732,
-                                    "numero": "2",
-                                    "numeroFila": 1,
-                                    "numeroColumna": 3,
-                                    "numeroPiso": 1
-                                },
-                                {
-                                    "idAsiento": 733,
-                                    "numero": "3",
-                                    "numeroFila": 1,
-                                    "numeroColumna": 4,
-                                    "numeroPiso": 1
-                                },
-                                {
-                                    "idAsiento": 734,
-                                    "numero": "4",
-                                    "numeroFila": 1,
-                                    "numeroColumna": 1,
-                                    "numeroPiso": 1
-                                }
-                            ] 
-                        }  
-                    ]
-                }
-            },
-              "401": {
-                status: "401 Unauthorized",
-                description: "Las credenciales provistas son inválidas.",
-                data: {
-                    status: 401,
-                    success: false,
-                    message: "Credenciales de API inválidas.",
-                    error_code: "AUTH_CREDENTIALS_INVALID"
+                    message: "Exito",
+                    data: {
+                        "idBus": 26,
+                        "modelo": "ADGNSDF",
+                        "placa": "HJJKHKJHK",
+                        "tipo": 0,
+                        "capacidad": 4,
+                        "asiento": [
+                            {
+                                "idAsiento": 731,
+                                "numero": "1",
+                                "numeroFila": 0,
+                                "numeroColumna": 3,
+                                "numeroPiso": 1
+                            },
+                            {
+                                "idAsiento": 732,
+                                "numero": "2",
+                                "numeroFila": 1,
+                                "numeroColumna": 3,
+                                "numeroPiso": 1
+                            },
+                            {
+                                "idAsiento": 733,
+                                "numero": "3",
+                                "numeroFila": 1,
+                                "numeroColumna": 4,
+                                "numeroPiso": 1
+                            },
+                            {
+                                "idAsiento": 734,
+                                "numero": "4",
+                                "numeroFila": 1,
+                                "numeroColumna": 1,
+                                "numeroPiso": 1
+                            }
+                        ]
+                    }
                 }
             },
             "500": {
-                status: "500 internal server ",
-                description: "Formato de rutas inválido.",
+                status: "500 Internal Server Error",
+                description: "Error interno del servidor.",
                 data: {
                     status: 500,
                     success: false,
-                    message: "Error en servicio al obtener buses : El id debe ser mayor a 0.",
-                    error_code: "rutas_FORMAT_INVALID"
-                }
-            },
-            "501" : {
-                status : "500 internal server BD",
-                description : "fallas internas en la Base de Datos (500)" ,
-                data :{
-                    success : false , 
-                    error : "Error en servicio al obtener buses : id = {id}: Could not find stored procedure 'SP_ListarBuses'." 
-                    
+                    message: "Error en servicio al obtener buses del transportista: El id debe ser mayor a 0",
                 }
             }
         }
@@ -300,9 +198,12 @@ const API_DATA = [
         method: "GET",
         path: "/v1/auth/transportista/TipoAsiento",
         title: "Tipo de asiento",
-        description: "Muestra dos Tipos de asiento por defecto (140 , 160). Cabe recalcar que nuestro sistema no maneja los tipos de asiento, por eso es por defecto",
+        description: "Muestra el tipo de asiento de un bus específico, como 140°, 160°.",
         authorizations: [
             { name: "Authorization", type: "string", location: "header", required: true, description: "Token Bearer de autenticación." }
+        ],
+        pathParams: [
+            { description: "Este EndPoint no requiere mas parametros" }
         ],
         queryParams: [],
         bodyParams: null,
@@ -313,18 +214,19 @@ const API_DATA = [
                 data: {
                     status: 200,
                     success: true,
+                    message: "Exito",
                     data: [
                         {                        
-                            "idTipoAsiento": 1,
-                            "tiposAsiento": "140",
-                            "precio": 0.00
-                        },
-                        {
-                            "idTipoAsiento": 2,
-                            "tiposAsiento": "160",
-                            "precio": 0.00
-            
-                        }
+                        "idTipoAsiento": 1,
+                        "tiposAsiento": "140",
+                        "precio": 0.00
+                    },
+                    {
+                        "idTipoAsiento": 2,
+                        "tiposAsiento": "160",
+                        "precio": 0.00
+        
+                    }
                     ]              
                   }
             },
@@ -335,318 +237,315 @@ const API_DATA = [
         id: "consultar-programaciones",
         category: "Programaciones",
         method: "GET",
-        path: "/v1/auth/transportista/programaciones?{}",
+        path: "/v1/auth/transportista/programaciones?Fecha={fecha(año/mes/dia)}&IdOrigen={idCiudad}&IdDestino={idciudad}",
         title: "Programaciones",
-        description: "Obtiene las programaciones solicitadas",
+        description: "Obtiene las programaciones solicitadas De acuredo a la Fecha, el IdOrigen y el IdDestino(estos Id vienen del endpoint de ciudades.)",
         authorizations: [
             { name: "Authorization", type: "string", location: "header", required: true, description: "Token Bearer de autenticación." }
         ],
         pathParams: [
-            { name: "placa", type: "int", required: true, description: "Placa del vehículo a consultar.", example: "CARS-12345" }
+            { name: "Fecha", type: "DateTime", required: true, description: "Fecha a consultarPara ver la programacion (ejemplo:)", example: "2026-01-13" },
+            { name: "IdOrigen", type: "int", required: true, description: "El id de la ciudad origen seleccionada (ejemplo:)", example: "2090" },
+            { name: "IdDestino", type: "int", required: true, description: "El Id de la ciudad destino seleccionada (ejemplo:)", example: "2340" }
         ],
         queryParams: [],
         bodyParams: null,
         responses: {
             "200": {
-                status: "200 OK",
+               status: "200 OK",
                 description: "Programaciones obtenidas.",
                 data: {
-                    status: 200,
-                    success: true,
-                    message: "Consulta de programaciones exitosa",
-                    data: {
-                        "idProgramacion": 48697,
-                        "fechaProgramacion": "2026-01-13T00:00:00",
-                        "origen": "TRUJILLO",
-                        "destino": "LIMA",
-                        "marcaBus": "marca 5",
-                        "modeloBus": "modelo 5",
-                        "placaBus": "CARS-12345",
-                        "idConductor": 18,
-                        "conductor": "Armando Paredes",
-                        "precioPiso1": 20.000,
-                        "precioPiso2": 40.000,
-                        "estado": 1,
-                        "puntosIntermedios": []
-                    }
-                }
-            },
-            "404": {
-                status: "404 Not Found",
-                description: "No tiene SOAT registrado.",
-                data: {
-                    status: 404,
-                    success: false,
-                    message: "No se encontró SOAT vigente ni vencido para la placa solicitada.",
-                    error_code: "SOAT_NOT_FOUND"
-                }
-            }
-        }
-    },
-    {
-        id: "consultar-gps",
-        category: "Vehículos y Tránsito",
-        method: "GET",
-        path: "/v1/vehiculos/placa/{placa}/gps",
-        title: "GPS en Tiempo Real",
-        description: "Obtiene las coordenadas geográficas de telemetría y estado de movimiento del dispositivo GPS instalado en la unidad.",
-        authorizations: [
-            { name: "Authorization", type: "string", location: "header", required: true, description: "Token Bearer de autenticación." }
-        ],
-        pathParams: [
-            { name: "placa", type: "string", required: true, description: "Placa del vehículo con GPS activo.", example: "F3B-823" }
-        ],
-        queryParams: [],
-        bodyParams: null,
-        responses: {
-            "200": {
-                status: "200 OK",
-                description: "Ubicación GPS obtenida con éxito.",
-                data: {
-                    status: 200,
-                    success: true,
-                    message: "GPS consultado correctamente",
-                    data: {
-                        placa: "F3B823",
-                        ignicion: "ENCENDIDO",
-                        velocidad_kmh: 62.4,
-                        rumbo: "NOR-ESTE (45°)",
-                        coordenadas: {
-                            latitud: -12.084723,
-                            longitud: -77.032891
-                        },
-                        altitud_metros: 142,
-                        odometro_km: 124982.3,
-                        ultima_actualizacion: "2026-05-20T15:21:45Z",
-                        conductor_asignado: {
-                            dni: "45678912",
-                            nombre: "CARLOS ALBERTO RODRIGUEZ"
+                    success : true,
+                    data : [
+                        {
+                            
+                            "idProgramacion": 48697,
+                            "fechaProgramacion": "2026-01-13T00:00:00",
+                            "origen": "TRUJILLO",
+                            "destino": "LIMA",
+                            "marcaBus": "marca 5",
+                            "modeloBus": "modelo 5",
+                            "placaBus": "CARS-12345",
+                            "idConductor": 18,
+                            "conductor": "Armando Paredes",
+                            "precioPiso1": 20.000,
+                            "precioPiso2": 40.000,
+                            "estado": 1,
+                            "puntosIntermedios": [
+                                {
+                                    "id": 1950,
+                                    "name": "ALMACEN",
+                                    "p1er": 0.0,
+                                    "p2do": 0.0
+                                }
+                            ]
+                            
+                        }, 
+                        {
+                            "idProgramacion": 50323,
+                            "fechaProgramacion": "2026-02-27T00:00:00",
+                            "origen": "Principal",
+                            "destino": "AGENCIA TRUJILLO",
+                            "marcaBus": "marca 5",
+                            "modeloBus": "modelo 5",
+                            "placaBus": "PPPP-13545",
+                            "idConductor": 18,
+                            "conductor": "ARANDA CHICLAYO HEVER OCTAVIO",
+                            "precioPiso1": 100.000,
+                            "precioPiso2": 80.000,
+                            "estado": 99,
+                            "puntosIntermedios": [
+                                {
+                                    "id": 1950,
+                                    "name": "ALMACEN",
+                                    "p1er": 0.0,
+                                    "p2do": 0.0
+                                }
+                            ]
                         }
-                    }
+
+                    ]
+                }
+            },
+              "401": {
+                status: "401 Unauthorized",
+                description: "Las credenciales provistas son inválidas.",
+                data: {
+                    status: 401,
+                    success: false,
+                    message: "Credenciales de API inválidas.",
+                    error_code: "AUTH_CREDENTIALS_INVALID"
+                }
+            },
+            "500": {
+                status: "500 internal server ",
+                description: "Formato de rutas inválido.",
+                data: {
+                    status: 500,
+                    success: false,
+                    message: "Error en servicio al obtener buses : El idDestino E idOrigen deben ser mayor a  0 .",
+                    error_code: "rutas_FORMAT_INVALID"
+                }
+            },
+            "501" : {
+                status : "500 internal server BD",
+                description : "fallas internas en la Base de Datos (500)" ,
+                data :{
+                    success : false , 
+                    error : "Error en servicio al obtener programaciones Could not find stored procedure 'SP_FiltrarSalidasV2'." 
+                    
                 }
             }
         }
     },
     {
-        id: "consultar-licencia",
-        category: "Conductores",
+        id: "Programaciones_por_Asientos",
+        category: "Programacion por Id",
         method: "GET",
-        path: "/v1/conductores/dni/{dni}/licencia",
-        title: "Licencia de conducir",
-        description: "Verifica el estado de la licencia de conducir del chofer en el sistema MTC, incluyendo puntos acumulados y retenciones.",
+        path: "/v1/auth/transportista/programaciones/{ID}/asientos",
+        title: "Programaciones por asiento",
+        description: "Obtiene el mapa de asientos atravez de su id(osea la programacion que se seleccione anteriormente), el IdDetalleProgramacion es el Id con el cual se crea las reservas, el ademas vienen datos como el numero de asiento(si es letra significa que no es un haciento clicleable), el precio normal del asiento si la ruta es la original (el precio se divide en pisos , 1 y 2 ) y tambien el precio si el cliente simplemente va a un punto intermedio",
         authorizations: [
             { name: "Authorization", type: "string", location: "header", required: true, description: "Token Bearer de autenticación." }
         ],
         pathParams: [
-            { name: "dni", type: "string", required: true, description: "Número de DNI del conductor a consultar.", example: "45678912" }
+            { name: "IdProgramacion", type: "int", required: true, description: "ID de la programación", example: "48697" }
         ],
         queryParams: [],
         bodyParams: null,
         responses: {
             "200": {
                 status: "200 OK",
-                description: "Licencia encontrada.",
+                description: "Programación por asiento obtenida con éxito.",
                 data: {
-                    status: 200,
                     success: true,
-                    message: "Consulta de Licencia MTC exitosa",
-                    data: {
-                        dni: "45678912",
-                        conductor: "RODRIGUEZ QUISPE, CARLOS ALBERTO",
-                        numero_licencia: "Q45678912",
-                        clase_categoria: "A-IIIc (Profesional Especial)",
-                        fecha_expedicion: "2021-02-10",
-                        fecha_vencimiento: "2029-02-10",
-                        estado: "VIGENTE / HABILITADO",
-                        puntos_acumulados: 15,
-                        puntos_limite: 100,
-                        restricciones: "USO DE LENTES COMPENSADORES",
-                        record_conductor: "BUENO (Sin infracciones graves en el último año)"
-                    }
-                }
-            }
-        }
-    },
-    {
-        id: "crear-guia",
-        category: "Guías de Remisión (Despachos)",
-        method: "POST",
-        path: "/v1/guias/crear",
-        title: "Crear Guía de Remisión",
-        description: "Registra y emite electrónicamente una Guía de Remisión Electrónica (Remitente o Transportista) firmada digitalmente y enviada a SUNAT.",
-        authorizations: [
-            { name: "Authorization", type: "string", location: "header", required: true, description: "Token Bearer de autenticación." }
-        ],
-        pathParams: [],
-        queryParams: [],
-        bodyParams: {
-            contentType: "application/json",
-            schema: [
-                { name: "tipo_guia", type: "string", required: true, description: "Tipo de guía: 'REMITENTE' o 'TRANSPORTISTA'." },
-                { name: "remitente_ruc", type: "string", required: true, description: "RUC del remitente (11 dígitos)." },
-                { name: "destinatario_ruc", type: "string", required: true, description: "RUC del destinatario (11 dígitos)." },
-                { name: "punto_partida", type: "object", required: true, description: "Dirección y ubigeo de origen del viaje." },
-                { name: "punto_llegada", type: "object", required: true, description: "Dirección y ubigeo de destino final." },
-                { name: "vehiculo_placa", type: "string", required: true, description: "Placa del camión asignado." },
-                { name: "conductor_dni", type: "string", required: true, description: "DNI del chofer asignado." },
-                { name: "peso_total_kg", type: "number", required: true, description: "Peso bruto total de la carga en kilogramos." },
-                { name: "items", type: "array", required: true, description: "Lista de productos transportados (código, descripción, cantidad, unidad)." }
-            ],
-            example: {
-                tipo_guia: "TRANSPORTISTA",
-                remitente_ruc: "20601234567",
-                destinatario_ruc: "20559988771",
-                punto_partida: {
-                    direccion: "Av. Materiales 2450, Cercado de Lima",
-                    ubigeo: "150101"
-                },
-                punto_llegada: {
-                    direccion: "Av. El Sol 124, Wanchaq, Cusco",
-                    ubigeo: "080108"
-                },
-                vehiculo_placa: "F3B-823",
-                conductor_dni: "45678912",
-                peso_total_kg: 18500.5,
-                items: [
-                    { codigo: "PROD-0092", descripcion: "Bolsas de Cemento Portland Tipo I", cantidad: 400, unidad: "SACOS" },
-                    { codigo: "PROD-1102", descripcion: "Fierro Corrugado de 1/2 pulgada", cantidad: 50, unidad: "VARILLAS" }
-                ]
-            }
-        },
-        responses: {
-            "200": {
-                status: "200 OK (Creado)",
-                description: "Guía de remisión emitida e informada a SUNAT.",
-                data: {
-                    status: 200,
-                    success: true,
-                    message: "Guía de Remisión Electrónica emitida correctamente",
-                    data: {
-                        id_guia: "T001-00049281",
-                        ticket_sunat: "202605201024-94827394",
-                        estado_sunat: "ACEPTADO",
-                        mensaje_sunat: "La Guía de Remisión Electrónica ha sido aceptada.",
-                        hash_xml: "eGg5N2RzZjhoOTIzNGhnaDk4M3RmZGFzZGY=",
-                        qr_content: "20601234567|09|T001|00049281|18500.5|2026-05-20|F3B823|45678912|",
-                        fecha_emision: "2026-05-20T15:24:50Z"
-                    }
+                    data: [
+
+                        {
+                            "idDetalleProgramacion": 2555206,
+                            "idOrigen": 1,
+                            "puntoOrigen": "Principal",
+                            "idDestino": 2075,
+                            "puntoDestino": "AGENCIA TRUJILLO",
+                            "valorAsiento": "4 ",
+                            "numeroFila": 1,
+                            "numeroColumna": 1,
+                            "numeroPiso": 1,
+                            "estado": 3,
+                            "precioPiso1": 120.000,
+                            "precioPiso2": 0.000,
+                            "puntosIntermedios": [
+                                {
+                                    "id": 1950,
+                                    "name": "ALMACEN",
+                                    "p1er": 0.0,
+                                    "p2do": 0.0
+                                }
+                            ]
+                        },
+                        {
+                            "idDetalleProgramacion": 2555205,
+                            "idOrigen": 1,
+                            "puntoOrigen": "Principal",
+                            "idDestino": 2075,
+                            "puntoDestino": "AGENCIA TRUJILLO",
+                            "valorAsiento": "3 ",
+                            "numeroFila": 1,
+                            "numeroColumna": 4,
+                            "numeroPiso": 1,
+                            "estado": 3,
+                            "precioPiso1": 120.000,
+                            "precioPiso2": 0.000,
+                            "puntosIntermedios": [
+                                {
+                                    "id": 1950,
+                                    "name": "ALMACEN",
+                                    "p1er": 0.0,
+                                    "p2do": 0.0
+                                }
+                            ]
+                        },
+                        {
+                            "idDetalleProgramacion": 2555204,
+                            "idOrigen": 1,
+                            "puntoOrigen": "Principal",
+                            "idDestino": 2075,
+                            "puntoDestino": "AGENCIA TRUJILLO",
+                            "valorAsiento": "2 ",
+                            "numeroFila": 1,
+                            "numeroColumna": 3,
+                            "numeroPiso": 1,
+                            "estado": 2,
+                            "precioPiso1": 120.000,
+                            "precioPiso2": 0.000,
+                            "puntosIntermedios": [
+                                {
+                                    "id": 1950,
+                                    "name": "ALMACEN",
+                                    "p1er": 0.0,
+                                    "p2do": 0.0
+                                }
+                            ]
+                        },
+                        {
+                            "idDetalleProgramacion": 2555203,
+                            "idOrigen": 1,
+                            "puntoOrigen": "Principal",
+                            "idDestino": 2075,
+                            "puntoDestino": "AGENCIA TRUJILLO",
+                            "valorAsiento": "1 ",
+                            "numeroFila": 0,
+                            "numeroColumna": 3,
+                            "numeroPiso": 1,
+                            "estado": 3,
+                            "precioPiso1": 120.000,
+                            "precioPiso2": 0.000,
+                            "puntosIntermedios": [
+                                {
+                                    "id": 1950,
+                                    "name": "ALMACEN",
+                                    "p1er": 0.0,
+                                    "p2do": 0.0
+                                }
+                            ]
+                        }
+                    ]
+                        
+                    
                 }
             },
-            "400": {
+                "401": {
+                status: "401 Unauthorized",
+                description: "Credenciales de API inválidas.",
+                data: {
+                    status: 401,
+                    success: false,
+                    message: "Credenciales de API inválidas.",
+                    error_code: "INVALID_CREDENTIALS"
+                }
+            },
+                "400": {
                 status: "400 Bad Request",
-                description: "Error de validación de campos u observaciones de negocio (ej. chofer inhabilitado o vehículo vencido).",
+                description: "Solicitud inválida.",
                 data: {
                     status: 400,
                     success: false,
-                    message: "No se puede emitir la guía. El SOAT del vehículo F3B823 se encuentra vencido.",
-                    error_code: "COMPLIANCE_SOAT_EXPIRED"
+                    message: "Error en servicio al obtener asientos: El id debe ser mayor a 0",
+                    error_code: "INVALID_REQUEST"
                 }
             }
         }
     },
+    
+
+
     {
-        id: "descargar-guia-json",
-        category: "Guías de Remisión (Despachos)",
-        method: "GET",
-        path: "/v1/guias/descargar/{id_guia}",
-        title: "Descargar Guía JSON",
-        description: "Obtiene la representación estructurada JSON de una guía emitida anteriormente con su estado de firmas y auditoría.",
+        id: "Bloqueo_Asientos",
+        category: "Bloqueo Asientos",
+        method: "POST",
+        path: "/v1/auth/transportista/Asientos/BloqueoAsiento?IdDetalleProgramacion={IdDetalleProgramacion}",
+        title: "Bloqueo de asientos",
+        description: "Bloquea un asiento específico para un usuario.",
         authorizations: [
             { name: "Authorization", type: "string", location: "header", required: true, description: "Token Bearer de autenticación." }
         ],
         pathParams: [
-            { name: "id_guia", type: "string", required: true, description: "Código de la guía de remisión (ej. T001-00049281).", example: "T001-00049281" }
+            { name: "IdDetalleProgramacion", type: "int", required: true, description: "ID del detalle de la programación(ejemplo:)", example: "2446307" }
         ],
         queryParams: [],
         bodyParams: null,
         responses: {
             "200": {
                 status: "200 OK",
-                description: "JSON retornado correctamente.",
+                description: "Asiento bloqueado exitosamente.",
                 data: {
                     status: 200,
-                    success: true,
-                    message: "Exito",
-                    data: {
-                        id_guia: "T001-00049281",
-                        tipo: "TRANSPORTISTA",
-                        estado: "DECLARADO_APROBADO",
-                        fecha_registro: "2026-05-20T15:24:50Z",
-                        remitente: {
-                            ruc: "20601234567",
-                            razon_social: "TRANSPORTES ANDINOS S.A.C."
-                        },
-                        destinatario: {
-                            ruc: "20559988771",
-                            razon_social: "CONSTRUCTORA PACIFICO S.A."
-                        },
-                        ruta: {
-                            origen: "Av. Materiales 2450, Lima",
-                            destino: "Av. El Sol 124, Cusco"
-                        },
-                        flota: {
-                            placa: "F3B823",
-                            conductor_dni: "45678912",
-                            conductor_licencia: "Q45678912"
-                        },
-                        peso: 18500.5
-                    }
+                    "success": true,
+                    "mensaje": "Token Generado Correctamente",
+                    "token": "6731f1aa-07cd-4df5-8db0-63caf53f92bf"
+                }
+            },
+             "400": {
+                status: "400 Bad Request",
+                description: "Solicitud inválida.",
+                data: {
+                    status: 400,
+                    "success": false,
+                    "mensaje": "No se Obtuvo Token Valido, Este asiento se esta usando por alguien mas"
                 }
             }
         }
     },
+    
     {
-        id: "iniciar-viaje",
-        category: "Viajes y Rutas",
-        method: "POST",
-        path: "/v1/viajes/iniciar",
-        title: "Iniciar Viaje",
-        description: "Inicia formalmente una ruta de despacho, asociando la unidad móvil, el conductor principal y las guías de carga. Envía notificaciones de seguimiento.",
+        id: "Liberar_Asientos",
+        category: "Bloqueo Asientos",
+        method: "Delete",
+        path: "/v1/auth/transportista/Asientos/Bloquear/{Token}",
+        title: "Liberar asiento",
+        description: "libera el asiento seleccionado con el token generado anteriormente(si pasa mas de 10 minutos el asiento se libera automaticamente).",
         authorizations: [
             { name: "Authorization", type: "string", location: "header", required: true, description: "Token Bearer de autenticación." }
         ],
-        pathParams: [],
+        pathParams: [
+            { name: "Token", required: true, description: "Token de autenticación.", example: "6731f1aa-07cd-4df5-8db0-63caf53f92bf" }
+        ],
         queryParams: [],
-        bodyParams: {
-            contentType: "application/json",
-            schema: [
-                { name: "vehiculo_placa", type: "string", required: true, description: "Placa del vehículo." },
-                { name: "conductor_dni", type: "string", required: true, description: "DNI del conductor principal asignado." },
-                { name: "guias_asociadas", type: "array", required: true, description: "Lista de IDs de guías de remisión electrónicas amparadas en el despacho." },
-                { name: "ruta_nombre", type: "string", required: false, description: "Nombre comercial de la ruta. Ej: 'Ruta Sur - Lima a Cusco'." }
-            ],
-            example: {
-                vehiculo_placa: "F3B-823",
-                conductor_dni: "45678912",
-                guias_asociadas: ["T001-00049281", "T001-00049282"],
-                ruta_nombre: "Troncal Sur - Lima Arequipa Cusco"
-            }
-        },
+        bodyParams: null,
         responses: {
             "200": {
                 status: "200 OK",
-                description: "Viaje iniciado con éxito en la plataforma de seguimiento.",
+                description: "Asiento liberado exitosamente.",
                 data: {
                     status: 200,
-                    success: true,
-                    message: "Despacho de viaje iniciado exitosamente",
-                    data: {
-                        id_viaje: "TRIP-2026-00928",
-                        estado: "EN_RUTA",
-                        codigo_seguimiento: "TRACK-89372-AND",
-                        fecha_salida: "2026-05-20T15:25:01Z",
-                        paradas_estimadas: [
-                            { parada: "Control Chilca", eta: "2026-05-20T16:45:00Z" },
-                            { parada: "Control Nazca", eta: "2026-05-20T21:30:00Z" }
-                        ],
-                        link_tracking: "https://tracking.transportista.pe/v1/live/TRACK-89372-AND"
-                    }
+                    "success": true,
+                    "mensaje": "Asiento liberado correctamente"
                 }
-            }
+            },
         }
-    }
-];
+    },
 
+];
 // ESTADO GLOBAL DE LA APP
 let activeEndpoint = API_DATA[1]; // Por defecto: Consulta DNI (id: consultar-dni)
 let activeResponseTab = "200";
@@ -1084,7 +983,7 @@ function updateCurlSnippet() {
     }
 
     // Generar string final cURL
-    const baseUrl = "https://factura-2.pe/ApiTransporte";
+    const baseUrl = "https://api.transportista.pe";
     let curlStr = `curl --request ${ep.method} \\\n  --url ${baseUrl}${urlPath}${queryParamsStr} \\\n  --header 'Authorization: ${authHeaderValue}'`;
     
     if (ep.bodyParams) {
