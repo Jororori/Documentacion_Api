@@ -502,7 +502,7 @@ const API_DATA = [
         id: "expandir_tiempo",
         category: "Bloqueo Asientos",
         method: "POST",
-        path: "v1/auth/transportista/Reservas/ExtenderV2?IdDetalle={idDetalleProgramacion}&Tiempo={tiempo}",
+        path: "v1/auth/transportista/Reservas/ExtenderV2?IdDetalle={IdDetalle}&Tiempo={Tiempo}",
         title: "Extender Reserva",
         description: "Mantener el asiento bloqueado por mas tiempo",
         authorizations: [
@@ -798,7 +798,7 @@ const API_DATA = [
         category: "REPROGRAMACION",
         method: "Post",
         path: "/v1/auth/transportista/Reservas/Posponer",
-        title: "Crear reserva Lista",
+        title: "Posponer Ticket",
         description: "Reprograma tu asiento para otro horario",
         authorizations: [
             { name: "Authorization", type: "string", location: "header", required: true, description: "Token Bearer de autenticación." }
